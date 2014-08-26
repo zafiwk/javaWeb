@@ -1,5 +1,6 @@
 package com.wangkang.javaweb.action;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileUploadException;
 
+import com.wangkang.javaweb.utils.DateUtils;
 import com.wangkang.javaweb.utils.FileUpLoadUtils;
+import com.wangkang.javaweb.utils.WebUtils;
 
 
 
@@ -40,15 +43,20 @@ public class FileUpLoadAction extends HttpServlet {
 
 		绗笁鏂瑰＋澶уか澹ぇ澶?
 		-----------------------------16790983432052--*/
-		String fileUrl=request.getServletContext().getRealPath("/file");
+		WebUtils  webUtil=new WebUtils(request,response);
+		String time=DateUtils.getDateNoUnderline();
+		String fileUrl=webUtil.getRealUrl()+"WEB-INF\\file\\"+time;
+		System.out.println("--------------------"+fileUrl);
+		File file=new File(fileUrl);
+		if(!file.isFile())
+		    file.mkdirs();
 		try {
 			FileUpLoadUtils.FileUpLoad(request, fileUrl);
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		}
-		response.getWriter().write("文件:"+request.getAttribute("str")+"上传成功！！！！");
-		
-		
+		request.setAttribute("message", "上传成功！！！！");
+		response.sendRedirect(webUtil.getWebRootUrl()+"/index.jsp");
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

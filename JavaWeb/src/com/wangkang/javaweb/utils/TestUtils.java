@@ -14,4 +14,8 @@ public class TestUtils {
 		System.out.println(NumberUtils.getRandomByEight());
 		}
 	}
+	@Test
+	public void test3() {
+	
+	}
 }

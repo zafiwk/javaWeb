@@ -18,7 +18,8 @@ public class WebUtils {
 	private Cookie[] cookie = null;
 	// 得到当前Web容器的root的路劲
 	private String webRootUrl = null;
-
+	//得到真实路劲用于上传文件
+	private String realUrl=null;
 	public WebUtils(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
@@ -29,6 +30,7 @@ public class WebUtils {
 		// request.getContextPath() request提交的容器对象的路劲
 		this.webRootUrl = request.getScheme() + "://" + request.getServerName()
 				+ ":" + request.getServerPort() + request.getContextPath();
+		this.realUrl=request.getServletContext().getRealPath("/");
 	}
 
 	public HttpServletRequest getRequest() {
@@ -75,6 +77,10 @@ public class WebUtils {
 
 			}
 		}
+	}
+
+	public String getRealUrl() {
+		return realUrl;
 	}
 
 }
