@@ -23,7 +23,6 @@ public class DateBaseUtils {
 
 	public DateBaseUtils(String url, String classUrl, String username,
 			String password) {
-		super();
 		this.url = url;
 		this.classUrl = classUrl;
 		this.username = username;
