@@ -39,7 +39,7 @@ public class FileUpLoadAction extends HttpServlet {
 		 * 绗笁鏂瑰＋澶уか澹ぇ澶? -----------------------------16790983432052--
 		 */
 
-		WebUtils webUtil = new WebUtils(request, response);
+		WebUtils webUtil =WebUtils.getInstance(request, response) ;
 		String time = DateUtils.getDateNoUnderline();
 		String fileUrl = webUtil.getRealUrl() + "WEB-INF\\file\\" + time;
 		File file = new File(fileUrl);

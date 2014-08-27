@@ -21,8 +21,8 @@ public class FileDownloadAction extends HttpServlet {
 		super.destroy(); 
 	}
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		doPost(request,response);
 	}
 

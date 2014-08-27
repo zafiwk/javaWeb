@@ -1,6 +1,8 @@
 package com.wangkang.javaweb.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpSession;
 //工具对象
 public class WebUtils {
 
+	// 用来访问的路劲是否需要IO压缩
+	List<String> list = new ArrayList<>();
 	// 处理request对象
 	private HttpServletRequest request = null;
 	// 处理response对象
@@ -22,9 +26,20 @@ public class WebUtils {
 	private Cookie[] cookie = null;
 	// 得到当前Web容器的root的路劲
 	private String webRootUrl = null;
-	//得到真实路劲用于上传文件
-	private String realUrl=null;
-	public WebUtils(HttpServletRequest request, HttpServletResponse response) {
+	// 得到真实路劲用于上传文件
+	private String realUrl = null;
+    private static  WebUtils webUtils=null;
+    public  static  synchronized WebUtils  getInstance(HttpServletRequest request, HttpServletResponse response)
+    {
+    	if(webUtils==null)
+    	{
+    		webUtils=new WebUtils(request,response);
+    		return webUtils;
+    	}
+    	else
+    		 return webUtils;
+    }
+	private WebUtils(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
 		this.session = request.getSession();
@@ -34,7 +49,12 @@ public class WebUtils {
 		// request.getContextPath() request提交的容器对象的路劲
 		this.webRootUrl = request.getScheme() + "://" + request.getServerName()
 				+ ":" + request.getServerPort() + request.getContextPath();
-		this.realUrl=request.getServletContext().getRealPath("/");
+		this.realUrl = request.getServletContext().getRealPath("/");
+		list.add("JSP");
+		list.add("HTML");
+		list.add("CSS");
+		list.add("PNG");
+
 	}
 
 	public HttpServletRequest getRequest() {
@@ -67,8 +87,8 @@ public class WebUtils {
 	}
 
 	public void deleteCookie(String coolieName) {
-	//cookie的路劲默认是/
-	//如果设置了路劲在删除的时候要保持路劲一致
+		// cookie的路劲默认是/
+		// 如果设置了路劲在删除的时候要保持路劲一致
 		if (this.cookie == null)
 			return;
 		else {
@@ -86,21 +106,22 @@ public class WebUtils {
 	public String getRealUrl() {
 		return realUrl;
 	}
+
 	/*
-	 * @param  url
-	 *         url 访问tomcat的绝对路径
-	 */ 
-	public void sendRedirectByreResponse(String url) throws IOException
-	{
+	 * @param url url访问tomcat的绝对路径
+	 */
+	public void sendRedirectByreResponse(String url) throws IOException {
 		response.sendRedirect(url);
 	}
+
 	/*
-	 * @param  url
-	 * 		   url /开头相对应用的根目录
+	 * @param url url /开头相对应用的根目录
 	 */
-	public void sendRedirectByreRequest(String url) throws IOException, ServletException
-	{
-		RequestDispatcher rd=request.getRequestDispatcher(url);
+	public void sendRedirectByreRequest(String url) throws IOException,
+			ServletException {
+		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(this.request, this.response);
 	}
+
+	
 }
