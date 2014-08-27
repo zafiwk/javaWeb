@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 public class GzipFilter implements Filter {
 
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -70,7 +69,6 @@ public class GzipFilter implements Filter {
 	}
 
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
 
 	}
 }
@@ -90,13 +88,11 @@ class MyServletOutputStream extends ServletOutputStream {
 
 	@Override
 	public boolean isReady() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void setWriteListener(WriteListener arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

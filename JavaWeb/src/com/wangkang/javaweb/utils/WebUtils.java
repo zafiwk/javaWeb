@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 //工具对象
 public class WebUtils {
 
@@ -123,5 +125,19 @@ public class WebUtils {
 		rd.forward(this.request, this.response);
 	}
 
+	public String  getRequestIp()
+	{
+		String ip = request.getHeader("X-Real-IP");
+		if (StringUtils.isBlank(ip)) {
+			ip = request.getHeader("Host");
+		}
+		if (StringUtils.isBlank(ip)) {
+			ip = request.getHeader("X-Forwarded-For");
+		}
+		if (StringUtils.isBlank(ip)) {
+			ip = "0.0.0.0";
+		}
+		return ip;
+	}
 	
 }

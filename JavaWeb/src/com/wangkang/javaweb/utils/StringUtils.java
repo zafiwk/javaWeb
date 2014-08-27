@@ -17,4 +17,13 @@ public class StringUtils {
 		else
 			return false;
 	}
+	
+	
+	public static  Boolean isBlank(String str)
+	{
+		if(str==null||"".equals(str))
+			return  true;
+		else
+			return false;
+	}
 }
