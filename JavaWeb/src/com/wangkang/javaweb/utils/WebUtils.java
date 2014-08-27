@@ -1,5 +1,9 @@
 package com.wangkang.javaweb.utils;
 
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -82,5 +86,21 @@ public class WebUtils {
 	public String getRealUrl() {
 		return realUrl;
 	}
-
+	/*
+	 * @param  url
+	 *         url 访问tomcat的绝对路径
+	 */ 
+	public void sendRedirectByreResponse(String url) throws IOException
+	{
+		response.sendRedirect(url);
+	}
+	/*
+	 * @param  url
+	 * 		   url /开头相对应用的根目录
+	 */
+	public void sendRedirectByreRequest(String url) throws IOException, ServletException
+	{
+		RequestDispatcher rd=request.getRequestDispatcher(url);
+		rd.forward(this.request, this.response);
+	}
 }

@@ -25,8 +25,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  */
 public class FileUpLoadUtils {
 
-	public static void FileUpLoad(HttpServletRequest request, String fileUrl)
-			throws FileUploadException, IOException {
+	public static void FileUpLoad(HttpServletRequest request, String fileUrl,
+			List<String> list) throws FileUploadException, IOException {
 		// 设置临时文件夹
 		String tempUrl = request.getServletContext().getRealPath("/temp");
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -50,8 +50,13 @@ public class FileUpLoadUtils {
 				String value = fi.getString("UTF-8");
 				request.setAttribute(name, value);
 			} else {
+				// 判断上传文件时候合法
+				String fileType = fi.getName();
+				//split传入的是一个正则表达式
+				String str[] = fileType.split("\\.");
 				// 文件上传时候如果没有上过文件，就会得到一个InputStream 对象只不过内容是空是
-				if (!fi.getName().equals("")) {
+				if (!fi.getName().equals("")
+						&& list.contains(str[1].toUpperCase())) {
 					// ------------------------用于显示上传进度
 					// ProgressListener progressListener=new ProgressListener
 					// (){
@@ -76,17 +81,18 @@ public class FileUpLoadUtils {
 					is.close();
 					fos.close();
 					fi.delete();
+					request.setAttribute("message", "文件上传成功");
+				} else {
+					request.setAttribute("message", "上传文件为空或者上传文件存在安全性");
 				}
 			}
-			
+
 		}
 	}
 
 	public static void FileDownload(HttpServletResponse response, File file)
 			throws IOException {
-
 		// Content-Disposition: 服务器通过这个头，告诉浏览器以下载方式打数据
-
 		response.setHeader("content-disposition", "attachment;filename="
 				+ URLEncoder.encode(file.getName(), "UTF-8"));
 		FileInputStream in = new FileInputStream(file);

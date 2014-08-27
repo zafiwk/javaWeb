@@ -24,6 +24,11 @@
     <servlet-name>FileDownloadAction</servlet-name>
     <servlet-class>com.wangkang.javaweb.action.FileDownloadAction</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>TestElAction</servlet-name>
+    <servlet-class>com.wangkang.javaweb.action.TestElAction</servlet-class>
+  </servlet>
+
 
 
   <servlet-mapping>
@@ -33,6 +38,10 @@
   <servlet-mapping>
     <servlet-name>FileDownloadAction</servlet-name>
     <url-pattern>/servlet/FileDownloadAction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestElAction</servlet-name>
+    <url-pattern>/servlet/TestElAction</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

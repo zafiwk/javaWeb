@@ -32,5 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a  href="${basePath }servlet/FileDownloadAction">文件下载</a><br/>
     ---------------------------------------------------------------<br/>
     <em>${message }</em><br/>
+    -------------------------------------------------------------------<br/>
+    <a  href="${pageContext.request.contextPath }/servlet/TestElAction">跳转进入test.jsp</a>
   </body>
 </html>
