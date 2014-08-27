@@ -1,13 +1,16 @@
 package com.wangkang.javaweb.utils;
+
 /*
  * 数据库工具类继承使用
  * 提供了得到连接和关闭连接
  */
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +20,9 @@ public class DateBaseUtils {
 	private String classUrl = null;
 	private String username = null;
 	private String password = null;
-	private Connection conn=null;
-	private PreparedStatement ps=null;
-	private ResultSet rs=null;
+	private Connection conn = null;
+	private PreparedStatement ps = null;
+	private ResultSet rs = null;
 
 	public DateBaseUtils(String url, String classUrl, String username,
 			String password) {
@@ -75,65 +78,74 @@ public class DateBaseUtils {
 		ps = null;
 		conn = null;
 	}
-	protected   Connection   getConn() throws SQLException
-	{
+
+	protected Connection getConn() throws SQLException {
 		return DriverManager.getConnection(url, username, password);
 	}
-	
 
-	//向数据库添加数据
-	protected  void  InsertValue(String sql,List<String> list,Map<String,Object>  map)
-	{
+	// 向数据库添加数据
+	protected void InsertValue(String sql, List<String> list, Object object) {
 		try {
-			conn=this.getConn();
-			ps=conn.prepareStatement(sql);
-			for(int i=0;i<list.size();i++)
-			{
+			Map<String, Object> map = doFiled(object);
+			conn = this.getConn();
+			ps = conn.prepareStatement(sql);
+			for (int i = 0; i < list.size(); i++) {
 				ps.setObject(i, map.get(list.get(i)));
 			}
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally
-		{
+		} finally {
 			this.closeConn(conn, ps, rs);
 		}
 	}
-	//向数据库删除记录
-	protected  void  DeleteValue(String sql,List<String> list,Map<String,Object>  map)
-	{
+
+	// 向数据库删除记录
+	protected void DeleteValue(String sql, List<String> list, Object object) {
+		Map<String, Object> map = doFiled(object);
 		try {
-			conn=this.getConn();
-			ps=conn.prepareStatement(sql);
-			for(int i=0;i<list.size();i++)
-			{
+			conn = this.getConn();
+			ps = conn.prepareStatement(sql);
+			for (int i = 0; i < list.size(); i++) {
 				ps.setObject(i, map.get(list.get(i)));
 			}
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally
-		{
+		} finally {
 			this.closeConn(conn, ps, rs);
 		}
 	}
-	//数据库修改记录
-	protected  void  updateValue(String sql,List<String> list,Map<String,Object>  map)
-	{
+
+	// 数据库修改记录
+	protected void updateValue(String sql, List<String> list, Object object) {
 		try {
-			conn=this.getConn();
-			ps=conn.prepareStatement(sql);
-			for(int i=0;i<list.size();i++)
-			{
+			Map<String, Object> map = doFiled(object);
+			conn = this.getConn();
+			ps = conn.prepareStatement(sql);
+			for (int i = 0; i < list.size(); i++) {
 				ps.setObject(i, map.get(list.get(i)));
 			}
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally
-		{
+		} finally {
 			this.closeConn(conn, ps, rs);
 		}
 	}
-	
+
+	private Map<String, Object> doFiled(Object object) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Field[] field = object.getClass().getDeclaredFields();
+		for (Field f : field) {
+			f.setAccessible(true);
+			try {
+				map.put(f.getName(), f.get(object));
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+		return map;
+
+	}
 }
