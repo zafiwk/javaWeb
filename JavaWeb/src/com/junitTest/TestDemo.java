@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 import org.junit.Test;
 
-public class SeTest {
+public class TestDemo {
 
 	@Test
 	public void test1() {
