@@ -12,7 +12,7 @@ public class StringUtils {
 	 **/
 	public  static  Boolean  isNotBlank(String str)
 	{
-		if(str!=null&&str.equals(""))
+		if(str!=null&&("").equals(str))
 			return  true;
 		else
 			return false;

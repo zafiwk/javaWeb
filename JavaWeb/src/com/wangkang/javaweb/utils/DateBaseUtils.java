@@ -133,7 +133,9 @@ public class DateBaseUtils {
 			this.closeConn(conn, ps, rs);
 		}
 	}
-
+	/*
+	 * 将object对象的属性值转化成Map
+	 */
 	private Map<String, Object> doFiled(Object object) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Field[] field = object.getClass().getDeclaredFields();
@@ -147,5 +149,24 @@ public class DateBaseUtils {
 		}
 		return map;
 
+	}
+
+	/*
+	 * 对于需要事务管理的时候，使用以下方法关闭
+	 */
+	protected void close(PreparedStatement ps, ResultSet rs) {
+		if (ps != null)
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null)
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+			}
 	}
 }
