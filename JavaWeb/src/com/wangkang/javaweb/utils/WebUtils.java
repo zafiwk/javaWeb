@@ -45,6 +45,7 @@ public class WebUtils {
 		this.request = request;
 		this.response = response;
 		this.session = request.getSession();
+
 		// request.getScheme() 协议
 		// request.getServerName() 服务器名字
 		// request.getServerPort() 端口号
@@ -139,5 +140,14 @@ public class WebUtils {
 		}
 		return ip;
 	}
-	
+	//用于校验session中指定的值是不是等于object
+	//这里调用request.getSession(false)校验了session可能没有创建
+	public Boolean valiadtionSessionValue(String name,Object object)
+	{
+		HttpSession session=request.getSession(false);
+		if(session==null||!object.equals(session.getAttribute(name)))
+			return   false;
+		else
+			return   true;
+	}
 }
