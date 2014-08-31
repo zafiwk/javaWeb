@@ -92,7 +92,7 @@ public class PersonXMLDao
 	//提交事务
 	private void updateXml(Document document) throws IOException
 	{
-		XMLWriter write = new XMLWriter(new FileWriter(file));
+		XMLWriter write = new XMLWriter(new FileWriter(file ));
 		write.write(document);
 		write.close();
 	}
