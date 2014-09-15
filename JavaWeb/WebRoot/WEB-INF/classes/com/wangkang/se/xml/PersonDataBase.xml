@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PersonDataBase>
+	<person id="1">
+		<username>王二</username>
+		<password>wanger</password>
+		<sex>男</sex>
+	</person>
+	<person id="2">
+		<username>张三</username>
+		<password>zhangsan</password>
+		<sex>男</sex>
+	</person>
+	<person id="3">
+		<username>李四</username>
+		<password>lisi</password>
+		<sex>女</sex>
+	</person>
+	<person id="4">
+		<username>王五</username>
+		<password>wangwu</password>
+		<sex>女</sex>
+	</person>
+
+
+	<person id="5">
+		<username>mmmm</username>
+		<password>ccccc</password>
+		<sex>nan</sex>
+	</person>
+</PersonDataBase>
