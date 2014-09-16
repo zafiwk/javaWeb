@@ -1,4 +1,4 @@
-package com.wangkang.se.domain;
+package com.wangkang.spring.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -29,10 +29,15 @@ public class FileUpLoadAction extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		/*
-		 * InputStream is = request.getInputStream(); byte[] b = new byte[1024 *
-		 * 1024]; int i = -1; StringBuffer sb=new StringBuffer(); while (((i =
-		 * is.read(b)) > 0)) { sb.append(new String(b,0,i)); } sb.trimToSize();
-		 * System.out.println(sb.toString());
+		 * InputStream is = request.getInputStream(); 
+		 * byte[] b = new byte[1024 *1024]; 
+		 * int i = -1; StringBuffer sb=new StringBuffer(); 
+		 * while (((i =is.read(b)) > 0))
+		 *  {
+		 *   sb.append(new String(b,0,i)); 
+		 *  } 
+		 *  sb.trimToSize();
+		 *  System.out.println(sb.toString());
 		 * -----------------------------16790983432052 Content-Disposition:
 		 * form-data; name="str"
 		 * 
