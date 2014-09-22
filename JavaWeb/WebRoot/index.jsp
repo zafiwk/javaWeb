@@ -15,9 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
   </head>
   
   <body>
@@ -34,5 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <em>${message }</em><br/>
     -------------------------------------------------------------------<br/>
     <a  href="${pageContext.request.contextPath }/servlet/TestElAction">跳转进入test.jsp</a>
+     -------------------------------------------------------------------<br/>
+    <a  href="${pageContext.request.contextPath }/testAction.do">跳转进入test.jsp</a>
   </body>
 </html>

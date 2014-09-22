@@ -15,13 +15,6 @@
 		                    http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
 		                    http://www.springframework.org/schema/data/jpa
     						http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
- <context:component-scan base-package="com.wangkang.spring.jpa"/> 
- <tx:annotation-driven transaction-manager="transactionManager"/> 
- <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
- 	<property name="entityManagerFactory" ref="entityManagerFactory"/> 
- </bean> 
- <bean id="entityManagerFactory" class= "org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> </bean> 
- <!-- 需要在 <beans> 标签中增加对 jpa 命名空间的引用 --> 
- <jpa:repositories base-package="footmark.springdata.jpa.dao" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
-  
- </beans> 
+<!-- 1、注解的自动扫描，表示组件（如：@controler，@Service，@Repository，@Resource等）的扫描 --> 
+<context:component-scan base-package="com.wangkang.action"></context:component-scan>
+</beans> 

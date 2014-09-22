@@ -28,6 +28,7 @@ RESOURCE_LOCAL  : 本地的事务管理   javaSE中只能使用这种。也就�
     <property name="hibernate.c3p0.timeout" value="1800" /> 
     <property name="hibernate.cache.use_query_cache" value="10" />
     <property name="hibernate.show_sql" value="true" />
+    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
    </properties>
   </persistence-unit>
 </persistence>
