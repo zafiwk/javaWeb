@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.wangkang.javaweb.utils.FileUpLoadUtils;
+import com.wangkang.javaweb.utils.WebFileUtils;
 
 public class FileDownloadAction extends HttpServlet {
 
@@ -30,7 +30,7 @@ public class FileDownloadAction extends HttpServlet {
 			throws ServletException, IOException {
 		String fileUrl=request.getServletContext().getRealPath("/file/0001.jpg");
 		File file=new File(fileUrl);
-		FileUpLoadUtils.FileDownload(response, file);
+		WebFileUtils.fileDownload(response, file);
 		
 	}
 

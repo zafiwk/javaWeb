@@ -23,7 +23,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * 版本 v1.0
  * 作者 王康
  */
-public class FileUpLoadUtils {
+public class WebFileUtils {
 
 	public static void FileUpLoad(HttpServletRequest request, String fileUrl,
 			List<String> list) throws FileUploadException, IOException {
@@ -90,7 +90,7 @@ public class FileUpLoadUtils {
 		}
 	}
 
-	public static void FileDownload(HttpServletResponse response, File file)
+	public static void fileDownload(HttpServletResponse response, File file)
 			throws IOException {
 		// Content-Disposition: 服务器通过这个头，告诉浏览器以下载方式打数据
 		response.setHeader("content-disposition", "attachment;filename="

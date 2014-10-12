@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileUploadException;
 
 import com.wangkang.javaweb.utils.DateUtils;
-import com.wangkang.javaweb.utils.FileUpLoadUtils;
+import com.wangkang.javaweb.utils.WebFileUtils;
 import com.wangkang.javaweb.utils.WebUtils;
 
 public class FileUpLoadAction extends HttpServlet {
@@ -51,7 +51,7 @@ public class FileUpLoadAction extends HttpServlet {
 		if (!file.isFile())
 			file.mkdirs();
 		try {
-			FileUpLoadUtils.FileUpLoad(request, fileUrl, list);
+			WebFileUtils.FileUpLoad(request, fileUrl, list);
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		}
