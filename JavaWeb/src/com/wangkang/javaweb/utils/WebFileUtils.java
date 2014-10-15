@@ -93,6 +93,7 @@ public class WebFileUtils {
 
 	public static void fileDownload(HttpServletResponse response, File file)
 			throws IOException {
+		//重置response对象
 		response.reset();
 		// 设置MIME表示属于下载
 	    response.setContentType("application/x-msdownload");
@@ -104,7 +105,7 @@ public class WebFileUtils {
 		FileInputStream in = new FileInputStream(file);
 		
 		int len = 0;
-		byte buffer[] = new byte[1024];
+		byte buffer[] = new byte[1024*1024];
 		
 		OutputStream out = response.getOutputStream();
 		while ((len = in.read(buffer)) > 0) {
