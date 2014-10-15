@@ -79,6 +79,7 @@ public class WebFileUtils {
 						fos.write(buffer, 0, len);
 					}
 					is.close();
+					fos.flush();
 					fos.close();
 					fi.delete();
 					request.setAttribute("message", "文件上传成功");
@@ -92,18 +93,25 @@ public class WebFileUtils {
 
 	public static void fileDownload(HttpServletResponse response, File file)
 			throws IOException {
+		response.reset();
+		// 设置MIME表示属于下载
+	    response.setContentType("application/x-msdownload");
 		// Content-Disposition: 服务器通过这个头，告诉浏览器以下载方式打数据
-		response.setHeader("content-disposition", "attachment;filename="
+		/*response.setHeader("Content-Disposition", "attachment;filename="
+				+ URLEncoder.encode(file.getName(), "UTF-8"));*/
+	    response.setHeader("Content-Disposition", "attachment;filename="
 				+ URLEncoder.encode(file.getName(), "UTF-8"));
 		FileInputStream in = new FileInputStream(file);
-		// 设置MIME表示属于下载
-		// response.setContentType("application/x-msdownload");
+		
 		int len = 0;
 		byte buffer[] = new byte[1024];
+		
 		OutputStream out = response.getOutputStream();
 		while ((len = in.read(buffer)) > 0) {
 			out.write(buffer, 0, len);
 		}
+		out.flush();
+		out.close();
 		in.close();
 	}
 
