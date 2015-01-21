@@ -46,6 +46,11 @@
     <servlet-name>TestElAction</servlet-name>
     <servlet-class>com.wangkang.javaweb.action.TestElAction</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>MyConstPageWriteTestJsp</servlet-name>
+    <servlet-class>com.wangkang.javaweb.action.MyConstPageWriteTestJsp</servlet-class>
+  </servlet>
+
 
 
 
@@ -60,6 +65,10 @@
   <servlet-mapping>
     <servlet-name>TestElAction</servlet-name>
     <url-pattern>/servlet/TestElAction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MyConstPageWriteTestJsp</servlet-name>
+    <url-pattern>/MyConstPageWriteTestJsp</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

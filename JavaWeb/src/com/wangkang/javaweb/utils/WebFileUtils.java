@@ -103,10 +103,8 @@ public class WebFileUtils {
 	    response.setHeader("Content-Disposition", "attachment;filename="
 				+ URLEncoder.encode(file.getName(), "UTF-8"));
 		FileInputStream in = new FileInputStream(file);
-		
 		int len = 0;
 		byte buffer[] = new byte[1024*1024];
-		
 		OutputStream out = response.getOutputStream();
 		while ((len = in.read(buffer)) > 0) {
 			out.write(buffer, 0, len);
